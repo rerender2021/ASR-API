@@ -1,0 +1,5 @@
+mugwort==0.1.0
+fastapi==0.91.0
+uvicorn==0.20.0
+pyinstaller==5.5
+pyinstaller-hooks-contrib==2022.15
