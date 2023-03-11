@@ -3,3 +3,4 @@ model
 build
 dist
 temp.py
+__pycache__
