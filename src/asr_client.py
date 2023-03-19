@@ -6,6 +6,7 @@ import argparse
 
 global current_data
 current_data = {}
+current_data["queue"] = []
 
 def get_current_data():
     global current_data
@@ -35,6 +36,7 @@ async def run_test():
 
                 global current_data
                 current_data["data"] = await websocket.recv()
+                current_data["queue"].append(current_data["data"])
                 # print(current_data)
                 # print (await websocket.recv())
 

@@ -107,6 +107,30 @@ async def asr(
         log.warning('No Content-Type')
         return None
 
+@app.post('/asr_queue')
+async def asr(
+        *, request: Request
+):
+    if 'content-type' in request.headers:
+        content_type = request.headers.get('content-type').lower()
+        # log.info('Request ContentType: %s', content_type)
+
+        response = {}
+        if content_type == 'application/json':
+            # data = await request.json()
+            current_data = get_current_data()
+            if current_data != None and "data" in current_data:
+                queue = current_data["queue"]
+                response["result"] = queue.copy()
+                current_data["queue"].clear()
+            return response
+        else:
+            log.warning('Unsupported Content-Type: %s', type(content_type))
+            return response
+    else:
+        log.warning('No Content-Type')
+        return None
+
 
 @app.post('/punct')
 async def punct(
