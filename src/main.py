@@ -35,14 +35,21 @@ def start_loop(loop):
 try:
     from fastapi import FastAPI, Request
     from fastapi.responses import PlainTextResponse
-    from punctuator import Punctuator
+    from deepmultilingualpunctuation import PunctuationModel
+
+    import torch
+    print("torch info:")
+    print(torch.__version__)
+    print(torch.version.cuda)
+    print(torch.cuda.is_available())
 
     app = FastAPI(openapi_url=None)
     global_data = {}
     global_data["server"] = asr_server()
     global_data["client"] = asr_client()
-    punct_model_path = os.path.join(os.getcwd(), "./model/INTERSPEECH-T-BRNN.pcl")
-    punctuator = Punctuator(punct_model_path)
+
+    punct_model_path = os.path.join(os.getcwd(), "./model/fullstop-punctuation-multilang-base")
+    punctuator = PunctuationModel(model = punct_model_path)
 
     async def start():
         loop = asyncio.new_event_loop()
@@ -116,7 +123,8 @@ async def punct(
             if text == "":  
                 response["text"] = ""
             else:
-                response["text"] = punctuator.punctuate(text)
+                response["text"] = punctuator.restore_punctuation(text)
+
             return response
         else:
             log.warning('Unsupported Content-Type: %s', type(content_type))

@@ -1,5 +1,6 @@
 venv
 model
+model_backup
 build
 dist
 temp.py
