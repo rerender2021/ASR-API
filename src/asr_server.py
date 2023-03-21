@@ -103,7 +103,12 @@ async def asr_server():
        args.model_path = sys.argv[1] or default_model_path
     else:
        default_model_path = os.path.join(os.getcwd(), "./model/vosk-model-en-us-0.22-lgraph")
-       args.model_path = default_model_path
+       advance_model_path = os.path.join(os.getcwd(), "./model/vosk-model-en-us-0.22")
+       print("advance model exists: ", os.path.exists(advance_model_path))
+       if os.path.exists(advance_model_path):
+        args.model_path = advance_model_path
+       else:
+        args.model_path = default_model_path
 
     print("model path: " + args.model_path)
 

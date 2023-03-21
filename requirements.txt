@@ -5,46 +5,48 @@
 # pyinstaller-hooks-contrib==2022.15
 # vosk==0.3.45
 # websockets==10.4
-# punctuator==0.9.6
 # sounddevice==0.4.6
 # numpy==1.20.3
+# deepmultilingualpunctuation==1.0.1
 
 altgraph==0.17.3
 anyio==3.6.2
-beautifulsoup4==4.11.2
 certifi==2022.12.7
 cffi==1.15.1
 charset-normalizer==3.1.0
 click==8.1.3
 colorama==0.4.6
+deepmultilingualpunctuation==1.0.1
 fastapi==0.91.0
-filelock==3.9.0
-gdown==4.6.4
+filelock==3.10.0
 h11==0.14.0
+huggingface-hub==0.13.2
 idna==3.4
-joblib==1.2.0
+Jinja2==3.1.2
+MarkupSafe==2.1.2
+mpmath==1.3.0
 mugwort==0.1.0
-nltk==3.8.1
+networkx==3.0
 numpy==1.20.3
+packaging==23.0
 pefile==2023.2.7
-punctuator==0.9.6
 pycparser==2.21
 pydantic==1.10.6
 pyinstaller==5.5
 pyinstaller-hooks-contrib==2022.15
-PySocks==1.7.1
 pywin32-ctypes==0.2.0
+PyYAML==6.0
 regex==2022.10.31
 requests==2.28.2
-scipy==1.10.1
-six==1.16.0
 sniffio==1.3.0
 sounddevice==0.4.6
-soupsieve==2.4
 srt==3.5.2
 starlette==0.24.0
-Theano==1.0.5
+sympy==1.11.1
+tokenizers==0.13.2
+torch==2.0.0
 tqdm==4.65.0
+transformers==4.27.1
 typing_extensions==4.5.0
 urllib3==1.26.15
 uvicorn==0.20.0
