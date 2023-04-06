@@ -75,7 +75,7 @@ async def recognize(websocket, path):
         sys.exit(1)
 
 
-async def asr_server():
+async def asr_server(model_path):
 
     global model
     global spk_model
@@ -93,24 +93,15 @@ async def asr_server():
 
     args.interface = os.environ.get('VOSK_SERVER_INTERFACE', '0.0.0.0')
     args.port = int(os.environ.get('VOSK_SERVER_PORT', 8210))
-    args.model_path = os.environ.get('VOSK_MODEL_PATH', 'model')
+
+    # args.model_path = os.environ.get('VOSK_MODEL_PATH', 'model')
+    args.model_path = model_path
+    print("model path: " + args.model_path)
+    
     args.spk_model_path = os.environ.get('VOSK_SPK_MODEL_PATH')
     args.sample_rate = float(os.environ.get('VOSK_SAMPLE_RATE', 8000))
     args.max_alternatives = int(os.environ.get('VOSK_ALTERNATIVES', 0))
     args.show_words = bool(os.environ.get('VOSK_SHOW_WORDS', True))
-
-    if len(sys.argv) > 1:
-       args.model_path = sys.argv[1] or default_model_path
-    else:
-       default_model_path = os.path.join(os.getcwd(), "./model/vosk-model-en-us-0.22-lgraph")
-       advance_model_path = os.path.join(os.getcwd(), "./model/vosk-model-en-us-0.22")
-       print("advance model exists: ", os.path.exists(advance_model_path))
-       if os.path.exists(advance_model_path):
-        args.model_path = advance_model_path
-       else:
-        args.model_path = default_model_path
-
-    print("model path: " + args.model_path)
 
     # Gpu part, uncomment if vosk-api has gpu support
     #

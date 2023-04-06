@@ -20,7 +20,8 @@ parser = argparse.ArgumentParser(
     epilog=r'''''')
 parser.add_argument('--host', type=str, help='listen host')
 parser.add_argument('--port', type=int, help='listen port')
-parser.set_defaults(host='127.0.0.1', port=8200)
+parser.add_argument('--model-path', type=str, help='model path')
+parser.set_defaults(host='127.0.0.1', port=8200, model_path="./model/vosk-model-en-us-0.22-lgraph")
 params = parser.parse_args()
 
 # init logger
@@ -45,7 +46,7 @@ try:
 
     app = FastAPI(openapi_url=None)
     global_data = {}
-    global_data["server"] = asr_server()
+    global_data["server"] = asr_server(params.model_path)
     global_data["client"] = asr_client()
 
     punct_model_path = os.path.join(os.getcwd(), "./model/fullstop-punctuation-multilang-base")
