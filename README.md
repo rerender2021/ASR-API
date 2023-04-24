@@ -70,6 +70,8 @@ Then, adjust `model` folder structure like this:
 
 # Package
 
+In virtual env:
+
 ```bash
 > build
 ```
