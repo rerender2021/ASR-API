@@ -61,7 +61,7 @@ async def asr_client():
     parser.add_argument('-d', '--device', type=int_or_str,
                         help='input device (numeric ID or substring)')
     parser.add_argument('-r', '--samplerate', type=int, help='sampling rate', default=16000)
-    args = parser.parse_args(remaining)
+    args, rest = parser.parse_known_args(remaining)
     loop = asyncio.get_running_loop()
     audio_queue = asyncio.Queue()
 
