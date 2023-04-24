@@ -75,7 +75,7 @@ async def recognize(websocket, path):
         sys.exit(1)
 
 
-async def asr_server(model_path):
+async def asr_server(model_path, vosk_port):
 
     global model
     global spk_model
@@ -92,7 +92,8 @@ async def asr_server(model_path):
     args = type('', (), {})()
 
     args.interface = os.environ.get('VOSK_SERVER_INTERFACE', '0.0.0.0')
-    args.port = int(os.environ.get('VOSK_SERVER_PORT', 8210))
+    # args.port = int(os.environ.get('VOSK_SERVER_PORT', 8210))
+    args.port = int(vosk_port)
 
     # args.model_path = os.environ.get('VOSK_MODEL_PATH', 'model')
     args.model_path = model_path

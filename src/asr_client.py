@@ -40,7 +40,7 @@ async def run_test():
                 # print(current_data)
                 # print (await websocket.recv())
 
-async def asr_client():
+async def asr_client(vosk_port):
 
     global args
     global loop
@@ -57,7 +57,7 @@ async def asr_client():
                                      formatter_class=argparse.RawDescriptionHelpFormatter,
                                      parents=[parser])
     parser.add_argument('-u', '--uri', type=str, metavar='URL',
-                        help='Server URL', default='ws://localhost:8210')
+                        help='Server URL', default='ws://localhost:'+ str(vosk_port))
     parser.add_argument('-d', '--device', type=int_or_str,
                         help='input device (numeric ID or substring)')
     parser.add_argument('-r', '--samplerate', type=int, help='sampling rate', default=16000)
